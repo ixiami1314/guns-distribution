@@ -2,6 +2,7 @@
 
 [TOC]
 ## 前言
+- 仓库暂停更新，后续版本和更新移动至Gitee仓库[FuFei(guns-distribution)](https://gitee.com/fufeii/guns-distribution)
 - 整个项目基于 [Guns后台管理框架v6.1](https://gitee.com/stylefeng/guns)，简单易用学习成本低。
 - 部分思想参考 [分销管理系统(EDEN-MACE)](https://gitee.com/codingdb/distribution_management) ，并重新设计了各个模块。
 
