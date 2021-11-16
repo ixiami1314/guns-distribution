@@ -51,6 +51,41 @@
             <version>1.2.8</version>
         </dependency>
 
+        <!-- web3j依赖相关 -->
+        <!--Java 操作智能合约 开始-->
+        <!--web3j-spring-boot-starter使用的web3j版本为3.x。本项目使用web3j的4.x版本-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.web3j</groupId>-->
+        <!--            <artifactId>web3j-spring-boot-starter</artifactId>-->
+        <!--            <version>1.6.0</version>-->
+        <!--        </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib -->
+        <!--springboot 2.3.4 不需要，2.1.7 需要 -->
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib</artifactId>
+            <version>1.3.70</version>
+        </dependency>
+        <!--okhttp与logging-interceptor可根据项目实际情况选择是否添加-->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>4.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>logging-interceptor</artifactId>
+            <version>4.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.web3j</groupId>
+            <artifactId>core</artifactId>
+            <version>4.7.0</version>
+        </dependency>
+        <!--Java 操作智能合约 结束-->
+
+
     </dependencies>
 
     <build>
@@ -93,6 +128,44 @@
                     </images>
                 </configuration>
             </plugin>
+
+            <!-- 将合约文件放在 resources 目录下，即可通过该插件自动生成合约 java 类 -->
+            <!--mvn web3j:generate-sources-->
+            <plugin>
+                <groupId>org.web3j</groupId>
+                <artifactId>web3j-maven-plugin</artifactId>
+                <version>4.6.5</version>
+                <configuration>
+                    <packageName>com.contract</packageName>
+                    <sourceDestination>src/main/java/generated</sourceDestination>
+                    <nativeJavaType>true</nativeJavaType>
+                    <outputFormat>java,bin</outputFormat>
+                    <soliditySourceFiles>
+                        <directory>src/main/resources</directory>
+                        <includes>
+                            <include>**/*.sol</include>
+                        </includes>
+                    </soliditySourceFiles>
+                    <outputDirectory>
+                        <java>src/java/generated</java>
+                        <bin>src/bin/generated</bin>
+                        <abi>src/abi/generated</abi>
+                    </outputDirectory>
+                    <contract>
+                        <!--<includes>-->
+                        <!--    <include>Chip</include>-->
+                        <!--</includes>-->
+                        <!--<excludes>-->
+                        <!--    <exclude>Hello</exclude>-->
+                        <!--    <exclude>Chip</exclude>-->
+                        <!--</excludes>-->
+                    </contract>
+                    <pathPrefixes>
+                        <pathPrefix>dep=../dependencies</pathPrefix>
+                    </pathPrefixes>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
