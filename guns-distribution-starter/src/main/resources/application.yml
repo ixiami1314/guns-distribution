@@ -51,3 +51,6 @@ dist:
   api:
     enable: true
     token-expired-month: 120
+
+blockchain:
+  rpc: http://localhost:8545

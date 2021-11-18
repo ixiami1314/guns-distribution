@@ -43,7 +43,8 @@ public class SwaggerConfig {
                 .groupName("distribution")
                 .select()
                 // 限定扫描包路径
-                .apis(RequestHandlerSelectors.basePackage("cn.stylefeng.guns.modular.distribution.api"))
+//                .apis(RequestHandlerSelectors.basePackage("cn.stylefeng.guns.modular.distribution.api"))
+                .apis(RequestHandlerSelectors.basePackage("cn.stylefeng.guns"))
                 // 限定接口注解
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())
