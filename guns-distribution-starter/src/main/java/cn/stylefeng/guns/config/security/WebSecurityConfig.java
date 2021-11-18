@@ -113,7 +113,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             web.ignoring().antMatchers(
                     HttpMethod.GET,
                     "/doc.html",
-                    "/webjars/**", "/swagger-resources/**", "/v2/api-docs/**");
+                    "/api/blockchain/**",
+                    "/webjars/**", "/swagger-resources/**", "/v2/api-docs/**", "/blockchain/**");
         }
 
     }

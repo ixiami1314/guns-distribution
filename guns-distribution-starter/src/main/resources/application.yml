@@ -53,4 +53,5 @@ dist:
     token-expired-month: 120
 
 blockchain:
-  rpc: http://localhost:8545
+  wallet-unlock-secnod: 60
+  rpc: http://127.0.0.1:8545/

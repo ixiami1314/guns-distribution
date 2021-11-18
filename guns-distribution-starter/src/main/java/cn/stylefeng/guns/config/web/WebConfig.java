@@ -128,7 +128,7 @@ public class WebConfig implements WebMvcConfigurer {
         JdkRegexpMethodPointcut druidStatPointcut = new JdkRegexpMethodPointcut();
         String patterns = "cn.stylefeng.guns.modular.*.service.*";
         //可以set多个
-        druidStatPointcut.setPatterns(patterns);
+        druidStatPointcut.setPatterns(patterns, "cn.stylefeng.guns.blockchain.service.*");
         return druidStatPointcut;
     }
 

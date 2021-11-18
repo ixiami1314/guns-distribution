@@ -71,8 +71,10 @@ public class NoneAuthedResources {
             "/tran/**",
 
             //获取租户列表的接口
-            "/tenantInfo/listTenants"
+            "/tenantInfo/listTenants",
 
+            // 区块链接口
+            "/blockchain/**"
     };
 
 }
