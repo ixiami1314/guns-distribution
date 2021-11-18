@@ -19,6 +19,9 @@ import java.math.BigInteger;
 @Component
 @ConfigurationProperties(prefix = "blockchain")
 public class Web3jProperties {
-    String     rpc;
+    String rpc;
     BigInteger walletUnlockSecond;
+    String contractOwnable;
+    String contractPanama;
+    String contractPrivateKey;
 }

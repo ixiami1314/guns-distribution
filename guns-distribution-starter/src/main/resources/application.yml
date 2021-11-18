@@ -54,4 +54,7 @@ dist:
 
 blockchain:
   wallet-unlock-secnod: 60
-  rpc: http://127.0.0.1:8545/
+  rpc: http://192.168.3.12:8545/
+  contract-private-key: 0x9754cdc1a5f26a81cbe2879c7070f25bcf4ec58d340bee1d659d015351700def
+  contract-ownable: 0xb9cc022fb3bccbb5b4322c84f88cab8f1fc46d61
+  contract-panama: 0x84e6cd57587db4eeea5375a5be91c2f8845dca1b

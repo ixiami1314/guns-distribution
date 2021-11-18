@@ -1,10 +1,14 @@
 package cn.stylefeng.guns.blockchain.api;
 
+import cn.stylefeng.guns.blockchain.contract.GasProvider;
+import cn.stylefeng.guns.blockchain.contract.Ownable;
+import cn.stylefeng.guns.blockchain.contract.Panama;
 import cn.stylefeng.guns.blockchain.service.ContractService;
 import cn.stylefeng.roses.kernel.model.response.ResponseData;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,10 +30,24 @@ public class ContractController {
     @Autowired
     ContractService contractService;
 
-    @ApiOperation("智能合约 部署（生成一个新币）")
-    @PostMapping("deploy")
-    ResponseData deploy () {
-        contractService.deploy();
+    @ApiOperation("智能合约 部署（Panama）")
+    @PostMapping("panama/deploy")
+    ResponseData deployPanama () {
+        contractService.deployPanama();
         return ResponseData.success();
     }
+
+    @ApiOperation("智能合约 部署（Ownable）")
+    @PostMapping("ownable/deploy")
+    ResponseData deployOwnable () {
+        contractService.deployOwnable();
+        return ResponseData.success();
+    }
+
+    @ApiOperation("智能合约 Ownable 调用功能")
+    @PostMapping("ownable/transfer/{address}")
+    ResponseData deployOwnable (@PathVariable("address") String toAddress) {
+        return ResponseData.success();
+    }
+
 }

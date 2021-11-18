@@ -4,6 +4,7 @@ import cn.stylefeng.guns.blockchain.properties.Web3jProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.admin.Admin;
 import org.web3j.protocol.http.HttpService;
@@ -25,11 +26,13 @@ public class Web3jConfig {
     Web3jProperties properties;
 
     @Bean
+    @Scope("prototype")
     Web3j web3j () {
         return Web3j.build(new HttpService(properties.getRpc()));
     }
 
     @Bean
+    @Scope("prototype")
     Admin admin () {
         return Admin.build(new HttpService(properties.getRpc()));
     }
