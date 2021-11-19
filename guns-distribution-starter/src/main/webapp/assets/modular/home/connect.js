@@ -1,6 +1,6 @@
 var qrcode = new QRCode("qrcode", {
     // text: "https://<?php echo $web_address?>",
-    text: ${webAddress},
+    text: webAddress,
     colorDark : "#000000",
     colorLight : "#ffffff",
     width: 260,
