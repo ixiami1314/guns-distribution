@@ -1,8 +1,8 @@
 package cn.stylefeng.guns.blockchain.api;
 
-import cn.stylefeng.guns.blockchain.contract.GasProvider;
+import cn.stylefeng.guns.blockchain.contract.MyGasProvider;
 import cn.stylefeng.guns.blockchain.contract.Ownable;
-import cn.stylefeng.guns.blockchain.contract.Panama;
+import cn.stylefeng.guns.blockchain.properties.BlockChainProperties;
 import cn.stylefeng.guns.blockchain.service.ContractService;
 import cn.stylefeng.roses.kernel.model.response.ResponseData;
 import io.swagger.annotations.Api;
@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.web3j.crypto.Credentials;
+import org.web3j.protocol.Web3j;
+import org.web3j.protocol.core.methods.response.TransactionReceipt;
+import org.web3j.tx.ClientTransactionManager;
+import org.web3j.tx.TransactionManager;
 
 /**
  * Project Name  guns-distribution
@@ -47,7 +52,6 @@ public class ContractController {
     @ApiOperation("智能合约 Ownable 调用功能")
     @PostMapping("ownable/transfer/{address}")
     ResponseData deployOwnable (@PathVariable("address") String toAddress) {
-        return ResponseData.success();
+        return ResponseData.success(contractService.transferOwnerShip(toAddress));
     }
-
 }

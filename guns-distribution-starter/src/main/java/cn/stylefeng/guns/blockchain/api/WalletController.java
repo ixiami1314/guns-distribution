@@ -1,6 +1,5 @@
 package cn.stylefeng.guns.blockchain.api;
 
-import cn.stylefeng.guns.base.auth.annotion.Permission;
 import cn.stylefeng.guns.blockchain.param.TransferParam;
 import cn.stylefeng.guns.blockchain.service.BlockChainService;
 import cn.stylefeng.roses.kernel.model.response.ResponseData;

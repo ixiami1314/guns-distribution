@@ -1,6 +1,7 @@
 package cn.stylefeng.guns.blockchain.config;
 
-import cn.stylefeng.guns.blockchain.properties.Web3jProperties;
+import cn.stylefeng.guns.blockchain.contract.MyGasProvider;
+import cn.stylefeng.guns.blockchain.properties.BlockChainProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,17 +24,20 @@ import org.web3j.protocol.http.HttpService;
 public class Web3jConfig {
 
     @Autowired
-    Web3jProperties properties;
+    BlockChainProperties properties;
 
     @Bean
-    @Scope("prototype")
     Web3j web3j () {
         return Web3j.build(new HttpService(properties.getRpc()));
     }
 
     @Bean
-    @Scope("prototype")
     Admin admin () {
         return Admin.build(new HttpService(properties.getRpc()));
+    }
+
+    @Bean
+    MyGasProvider gasProvider () {
+        return new MyGasProvider();
     }
 }

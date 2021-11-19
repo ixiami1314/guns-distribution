@@ -1,7 +1,7 @@
 package cn.stylefeng.guns.blockchain.service;
 
 import cn.stylefeng.guns.blockchain.param.TransferParam;
-import cn.stylefeng.guns.blockchain.properties.Web3jProperties;
+import cn.stylefeng.guns.blockchain.properties.BlockChainProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,7 +41,7 @@ public class BlockChainService {
     Admin admin;
 
     @Autowired
-    Web3jProperties properties;
+    BlockChainProperties properties;
 
     /***
      * 获取余额

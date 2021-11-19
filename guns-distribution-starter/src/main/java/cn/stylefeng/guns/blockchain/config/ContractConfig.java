@@ -1,10 +1,7 @@
 package cn.stylefeng.guns.blockchain.config;
 
-import cn.stylefeng.guns.blockchain.contract.Ownable;
-import cn.stylefeng.guns.blockchain.contract.Panama;
-import cn.stylefeng.guns.blockchain.properties.Web3jProperties;
+import cn.stylefeng.guns.blockchain.properties.BlockChainProperties;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -14,10 +11,6 @@ import org.web3j.protocol.core.DefaultBlockParameterName;
 import org.web3j.protocol.core.Request;
 import org.web3j.protocol.core.methods.request.EthFilter;
 import org.web3j.protocol.core.methods.response.EthBlockNumber;
-import org.web3j.protocol.core.methods.response.Web3ClientVersion;
-import org.web3j.tx.ClientTransactionManager;
-import org.web3j.tx.TransactionManager;
-import org.web3j.tx.gas.ContractGasProvider;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -36,27 +29,8 @@ import java.math.BigInteger;
 @Slf4j
 public class ContractConfig {
 
-    @Autowired
-    Web3jProperties properties;
-
-    @Autowired
-    Web3j web3j;
-
-    @Autowired
-    ContractGasProvider gasProvider;
-
 //    @Bean
-//    Panama panama () throws IOException {
-//        Web3ClientVersion web3ClientVersion  = web3j.web3ClientVersion().send();
-//        log.info("- client version is {}", web3ClientVersion.getWeb3ClientVersion());
-//        // 以某用户的身份去调用合约
-//        TransactionManager transactionManager = new ClientTransactionManager(web3j, properties.getContractPrivateKey());
-//        Panama ownable = Panama.load(properties.getContractPanama(), web3j, transactionManager, gasProvider);
-//        return ownable;
-//    }
-//
-//    @Bean
-//    Ownable ownable () throws IOException {
+//    Ownable ownable (BlockChainProperties properties) throws IOException {
 //        Web3ClientVersion web3ClientVersion  = web3j.web3ClientVersion().send();
 //        log.info("- client version is {}", web3ClientVersion.getWeb3ClientVersion());
 //        // 以某用户的身份去调用合约
@@ -65,13 +39,21 @@ public class ContractConfig {
 //        return ownable;
 //    }
 
+    /***
+     * 定义一个合约监听器
+     *
+     * @param web3j
+     * @param properties
+     * @return
+     * @throws IOException
+     */
     @Bean
     @Scope("prototype")
-    public EthFilter ethFilter () throws IOException {
+    public EthFilter ethFilter (Web3j web3j, BlockChainProperties properties) throws IOException {
         Request<?, EthBlockNumber> request = web3j.ethBlockNumber();
         BigInteger fromblock = request.send().getBlockNumber();
         return new EthFilter(DefaultBlockParameter.valueOf(fromblock),
                 DefaultBlockParameterName.LATEST,
-                properties.getContractOwnable());
+                properties.getOwnableContractAddress());
     }
 }
