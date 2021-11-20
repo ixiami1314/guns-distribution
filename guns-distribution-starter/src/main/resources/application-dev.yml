@@ -2,9 +2,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://xxx.xxx.xxx.xxx:3306/guns_distribution?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
+    url: jdbc:mysql://i.suzhouzhangyixin.com:33060/guns_distribution?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
     username: root
-    password: xxx
+    password: 123456
     filters: wall,mergeStat
 
     # 连接池大小根据实际情况调整
@@ -13,9 +13,9 @@ spring:
 
   # redis 配置
   redis:
-    host: 47.116.1.66
-    port: 6379
-    password: xxx
+    host: i.suzhouzhangyixin.com
+    port: 63712
+    password: 123456
     database: 1
 
   # 邮件发送配置（改为自己的账号和密码）

@@ -1,7 +1,9 @@
 package cn.stylefeng.guns.blockchain.api;
 
 import cn.stylefeng.guns.blockchain.param.TransferParam;
+import cn.stylefeng.guns.blockchain.param.QRCodeParam;
 import cn.stylefeng.guns.blockchain.service.BlockChainService;
+import cn.stylefeng.guns.blockchain.service.IBANService;
 import cn.stylefeng.roses.kernel.model.response.ResponseData;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,6 +29,9 @@ public class WalletController {
     @Autowired
     BlockChainService blockChainService;
 
+    @Autowired
+    IBANService ibanService;
+
     @ApiOperation("帐户 查询余额")
     @GetMapping("{address}/balance")
     ResponseData getETHBalance (@PathVariable("address") String address) throws IOException {
@@ -37,5 +42,11 @@ public class WalletController {
     @PostMapping("/transfer")
     ResponseData transfer (@RequestBody TransferParam param) throws IOException {
         return ResponseData.success(blockChainService.sendTransaction(param));
+    }
+
+    @ApiOperation("IBAN 生成二维码")
+    @GetMapping("qrcode")
+    ResponseData generateQRCode (QRCodeParam param) throws IOException {
+        return ResponseData.success(ibanService.getIBAN(param));
     }
 }

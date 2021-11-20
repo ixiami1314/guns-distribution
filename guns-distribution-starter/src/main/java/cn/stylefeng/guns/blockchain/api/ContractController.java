@@ -54,4 +54,10 @@ public class ContractController {
     ResponseData deployOwnable (@PathVariable("address") String toAddress) {
         return ResponseData.success(contractService.transferOwnerShip(toAddress));
     }
+
+    @ApiOperation("智能合约 Ownable 授权")
+    @PostMapping("ownable/approve/{address}")
+    ResponseData approve (@PathVariable("address") String toAddress) {
+        return ResponseData.success(contractService.transferAporove(toAddress));
+    }
 }

